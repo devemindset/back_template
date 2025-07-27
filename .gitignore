@@ -1,0 +1,3 @@
+/venv
+back_template/.env
+back_template/db.sqlite3
