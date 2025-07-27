@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('raxa_rock/', admin.site.urls),
+    path("data_control/",include("data_control.urls"))
 
 ]
 
