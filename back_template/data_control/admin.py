@@ -4,6 +4,8 @@ from django.urls import path
 from django.utils.html import format_html
 from .models import Service, BackgroundImage, About, Product, Contact, Project
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
+
 
 # -------- UTILITAIRE : Aperçu image --------
 def image_preview(obj):

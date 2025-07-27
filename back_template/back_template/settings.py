@@ -83,7 +83,7 @@ if not DEBUG:
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS':[BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -171,7 +171,7 @@ STATIC_ROOT = os.path.join(BASE_DIR,'static/')
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR,"media/")
 
-TEMPLATES['DIRS'] = [BASE_DIR / "templates"]
+TEMPLATES[0]['DIRS'] = [BASE_DIR / "templates"]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 

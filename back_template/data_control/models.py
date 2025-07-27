@@ -75,6 +75,7 @@ class Service(models.Model):
         verbose_name="Detailed Content",
         help_text="Minimum 255 characters"
     )
+    slug = models.SlugField(unique=True, blank=True)
 
     def __str__(self):
         return f'{self.service_name}'
@@ -88,6 +89,8 @@ class Service(models.Model):
             raise ValidationError({"content": "Content must be at least 255 characters long."})
 
     def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.service_name)
         self.full_clean()
         super().save(*args, **kwargs)
 
@@ -110,6 +113,10 @@ class BackgroundImage(models.Model):
             w, h = img.size
             if w > 1920 or h > 1055:
                 raise ValidationError({"background_image": "Image dimensions must not exceed 1920x1055 pixels."})
+            
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
 
 # ------------------- ABOUT -------------------
 class About(models.Model):
@@ -156,6 +163,7 @@ class Product(models.Model):
         verbose_name="Product Details",
         help_text="Minimum 255 characters"
     )
+    slug = models.SlugField(unique=True, blank=True)
 
     def __str__(self):
         return self.product_name
@@ -169,6 +177,8 @@ class Product(models.Model):
             raise ValidationError({"content": "Content must be at least 255 characters long."})
 
     def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.product_name)
         self.full_clean()
         super().save(*args, **kwargs)
 
